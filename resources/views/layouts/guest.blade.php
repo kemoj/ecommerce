@@ -63,8 +63,46 @@
               </div>
               <div class="topbar-menu right-menu">
                 <ul>
-                  <li class="menu-item"><a title="Register or Login" href="login.html">Login</a></li>
-                  <li class="menu-item"><a title="Register or Login" href="register.html">Register</a></li>
+                  @if (Route::has('login'))
+                    @auth
+                      @if (Auth::user()->user_type === 'admin')
+                        <li class="menu-item menu-item-has-children parent">
+                          <a title="Dashboard (Admin)" href="#">Dashboard (Admin)<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                          <ul class="submenu curency">
+                            <li class="menu-item">
+                              <a title="Pound (GBP)" href="#">Pound (GBP)</a>
+                            </li>
+                            <li class="menu-item">
+                              <a title="Euro (EUR)" href="#">Euro (EUR)</a>
+                            </li>
+                            <li class="menu-item">
+                              <a title="Dollar (USD)" href="#">Dollar (USD)</a>
+                            </li>
+                          </ul>
+                        </li>
+                        @else
+                          <li class="menu-item menu-item-has-children parent">
+                            <a title="Dashboard" href="#">Dashboard<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                            <ul class="submenu curency">
+                              <li class="menu-item">
+                                <a title="Pound (GBP)" href="#">Pound (GBP)</a>
+                              </li>
+                              <li class="menu-item">
+                                <a title="Euro (EUR)" href="#">Euro (EUR)</a>
+                              </li>
+                              <li class="menu-item">
+                                <a title="Dollar (USD)" href="#">Dollar (USD)</a>
+                              </li>
+                            </ul>
+                          </li>
+                      @endif
+                      @else
+                        <li class="menu-item"><a title="Register or Login" href="{{route('login')}}">Login</a></li>
+                        <li class="menu-item"><a title="Register or Login" href="{{route('register')}}">Register</a></li>
+                    @endauth
+                  @endif
+
+
                   <li class="menu-item lang-menu menu-item-has-children parent">
                     <a title="English" href="#"><span class="img label-before"><img src="assets/images/lang-en.png"
                           alt="lang-en"></span>English<i class="fa fa-angle-down" aria-hidden="true"></i></a>
@@ -190,23 +228,23 @@
               <div class="container">
                 <ul class="nav primary clone-main-menu" id="mercado_main" data-menuname="Main menu">
                   <li class="menu-item home-icon">
-                    <a href="index.html" class="link-term mercado-item-title"><i class="fa fa-home"
+                    <a href="/" class="link-term mercado-item-title"><i class="fa fa-home"
                         aria-hidden="true"></i></a>
                   </li>
                   <li class="menu-item">
-                    <a href="about-us.html" class="link-term mercado-item-title">About Us</a>
+                    <a href="about" class="link-term mercado-item-title">About Us</a>
                   </li>
                   <li class="menu-item">
-                    <a href="shop.html" class="link-term mercado-item-title">Shop</a>
+                    <a href="shop" class="link-term mercado-item-title">Shop</a>
                   </li>
                   <li class="menu-item">
-                    <a href="cart.html" class="link-term mercado-item-title">Cart</a>
+                    <a href="cart" class="link-term mercado-item-title">Cart</a>
                   </li>
                   <li class="menu-item">
-                    <a href="checkout.html" class="link-term mercado-item-title">Checkout</a>
+                    <a href="checkout" class="link-term mercado-item-title">Checkout</a>
                   </li>
                   <li class="menu-item">
-                    <a href="contact-us.html" class="link-term mercado-item-title">Contact Us</a>
+                    <a href="contact-us" class="link-term mercado-item-title">Contact Us</a>
                   </li>
                 </ul>
               </div>
